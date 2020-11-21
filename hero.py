@@ -1,4 +1,6 @@
 import random
+from ability import Ability
+from armor import Armor
 
 class Hero:
     # We want our hero to have a default "starting_health",
@@ -11,6 +13,10 @@ class Hero:
         # when a hero is created, their current health is
         # always the same as their starting health (no damage taken yet!)
         self.current_health = starting_health
+        # abilities and armors don't have starting values,
+        # and are set to empty lists on initialization
+        self.abilities = []
+        self.armors = []
 
     def fight(self, opponent):
         # TODO: Fight each hero until a victor emerges.
