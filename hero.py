@@ -36,7 +36,7 @@ class Hero:
         # We use the append method to add armor objects to our list.
         self.armors.append(armor)
 
-    def defend(self):
+    def defend(self, damage_amt):
         # start our total out at 0
         total_block = 0
         # loop through all of our hero's abilities
@@ -45,6 +45,13 @@ class Hero:
             total_block += armor.block()
         # return the total damage
         return total_block
+
+    def take_damage(self, damage):
+        # TODO: Create a method that updates self.current_health to the current
+        # minus the the amount returned from calling self.defend(damage).
+        defense = self.defend(damage)
+        damage -= defense
+        self.current_health -= damage
 
     def fight(self, opponent):
         # TODO: Fight each hero until a victor emerges.
@@ -58,18 +65,20 @@ class Hero:
 if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
-    ability = Ability("Great Debugging", 50)
-    another_ability = Ability("Smarty Pants", 90)
-    armor = Armor("Debugging Shield", 10)
+    # ability = Ability("Great Debugging", 50)
+    # another_ability = Ability("Smarty Pants", 90)
+    # armor = Armor("Debugging Shield", 10)
     another_armor = Armor("Great Firewall", 50)
     my_hero = Hero("Grace Hopper", 200)
     # print(my_hero.name)
     # print(my_hero.current_health)
-    my_hero.add_ability(ability)
-    my_hero.add_ability(another_ability)
-    print(my_hero.attack())
-    my_hero.add_armor(armor)
+    # my_hero.add_ability(ability)
+    # my_hero.add_ability(another_ability)
+    # print(my_hero.attack())
+    # my_hero.add_armor(armor)
     my_hero.add_armor(another_armor)
-    print(my_hero.defend())
+    my_hero.take_damage(50)
+    print(my_hero.current_health)
+    # print(my_hero.defend(10))
     # my_villan = Hero("Firebrand")
     # my_hero.fight(my_villan)
