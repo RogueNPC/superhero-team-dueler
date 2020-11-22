@@ -17,6 +17,7 @@ class Team:
                 self.heroes.remove(hero)
                 # set our indicator to True
                 foundHero = True
+                break
         # if we looped through our list and did not find our hero,
         # the indicator would have never changed, so return 0
         if not foundHero:
