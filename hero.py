@@ -1,4 +1,3 @@
-import random
 from ability import Ability
 from armor import Armor
 
@@ -53,14 +52,6 @@ class Hero:
         damage -= defense
         self.current_health -= damage
 
-    def fight(self, opponent):
-        # TODO: Fight each hero until a victor emerges.
-        # Phases to implement:
-        # 1) randomly choose winner,
-        # Hint: Look into random library, more specifically the choice method
-        fighters = [self.name, opponent.name]
-        print(f"{random.choice(fighters)} won!")
-
     def is_alive(self):  
         # TODO: Check the current_health of the hero.
         # if it is <= 0, then return False. Otherwise, they still have health
@@ -70,28 +61,40 @@ class Hero:
         else:
             return True
 
+    def fight(self, opponent):
+        # TODO: Fight each hero until a victor emerges.
+        # Phases to implement:
+        # 0) check if at least one hero has abilities. If no hero has abilities, print "Draw"
+        # 1) else, start the fighting loop until a hero has won
+        # 2) the hero (self) and their opponent must attack each other and each must take damage from the other's attack
+        # 3) After each attack, check if either the hero (self) or the opponent is alive
+        # 4) if one of them has died, print "HeroName won!" replacing HeroName with the name of the hero, and end the fight loop
+        if self.abilities == [] or opponent.abilities == []:
+            print("Draw, Both heroes have no abilities!")
+        else:
+            while self.is_alive() and opponent.is_alive():
+                opponent.take_damage(self.attack())
+                self.take_damage(opponent.attack())
+            if not self.is_alive() and not opponent.is_alive():
+                print("Draw, Both heroes are knocked out!")
+            elif self.is_alive() and not opponent.is_alive():
+                print(f"{self.name} won!")
+            else:
+                print(f"{opponent.name} won!")
+
 
 if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
-    # ability = Ability("Great Debugging", 50)
-    # another_ability = Ability("Smarty Pants", 90)
-    # armor = Armor("Debugging Shield", 10)
-    # another_armor = Armor("Great Firewall", 50)
-    my_hero = Hero("Grace Hopper", 200)
-    # print(my_hero.name)
-    # print(my_hero.current_health)
-    # my_hero.add_ability(ability)
-    # my_hero.add_ability(another_ability)
-    # print(my_hero.attack())
-    # my_hero.add_armor(armor)
-    # my_hero.add_armor(another_armor)
-    # my_hero.take_damage(50)
-    # print(my_hero.current_health)
-    # print(my_hero.defend(10))
-    # my_villan = Hero("Firebrand")
-    # my_hero.fight(my_villan)
-    my_hero.take_damage(150)
-    print(my_hero.is_alive())
-    my_hero.take_damage(15000)
-    print(my_hero.is_alive())
+    
+    hero1 = Hero("Wonder Woman")
+    hero2 = Hero("Dumbledore")
+    ability1 = Ability("Super Speed", 100)
+    ability2 = Ability("Super Eyes", 30)
+    ability3 = Ability("Wizard Wand", 80)
+    ability4 = Ability("Wizard Beard", 20)
+    hero1.add_ability(ability1)
+    hero1.add_ability(ability2)
+    hero2.add_ability(ability3)
+    hero2.add_ability(ability4)
+    hero1.fight(hero2)
