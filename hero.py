@@ -1,5 +1,6 @@
 from ability import Ability
 from armor import Armor
+from weapon import Weapon
 
 class Hero:
     # We want our hero to have a default "starting_health",
@@ -45,6 +46,13 @@ class Hero:
         # return the total damage
         return total_block
 
+    def add_weapon(self, weapon):
+        # TODO: This method will append the weapon object passed in as an
+        # argument to self.abilities.
+        # This means that self.abilities will be a list of
+        # abilities and weapons.
+        self.abilities.append(weapon)
+
     def take_damage(self, damage):
         # TODO: Create a method that updates self.current_health to the current
         # minus the the amount returned from calling self.defend(damage).
@@ -87,14 +95,7 @@ if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
     
-    hero1 = Hero("Wonder Woman")
-    hero2 = Hero("Dumbledore")
-    ability1 = Ability("Super Speed", 100)
-    ability2 = Ability("Super Eyes", 30)
-    ability3 = Ability("Wizard Wand", 80)
-    ability4 = Ability("Wizard Beard", 20)
-    hero1.add_ability(ability1)
-    hero1.add_ability(ability2)
-    hero2.add_ability(ability3)
-    hero2.add_ability(ability4)
-    hero1.fight(hero2)
+    hero = Hero("Wonder Woman")
+    weapon = Weapon("Lasso of Truth", 90)
+    hero.add_weapon(weapon)
+    print(hero.attack())
