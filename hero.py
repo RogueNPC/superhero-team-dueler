@@ -77,13 +77,11 @@ class Hero:
         self.deaths += num_deaths
 
     def fight(self, opponent):
-        # TODO: Fight each hero until a victor emerges.
-        # Phases to implement:
-        # 0) check if at least one hero has abilities. If no hero has abilities, print "Draw"
-        # 1) else, start the fighting loop until a hero has won
-        # 2) the hero (self) and their opponent must attack each other and each must take damage from the other's attack
-        # 3) After each attack, check if either the hero (self) or the opponent is alive
-        # 4) if one of them has died, print "HeroName won!" replacing HeroName with the name of the hero, and end the fight loop
+        # TODO: Refactor this method to update the following:
+        # 1) the number of kills the hero (self) has when the opponent dies.
+        # 2) then number of kills the opponent has when the hero (self) dies
+        # 3) the number of deaths of the opponent if they die    in the fight
+        # 4) the number of deaths of the hero (self) if they die in the fight
         if self.abilities == [] or opponent.abilities == []:
             print("Draw, Both heroes have no abilities!")
         else:
@@ -92,10 +90,18 @@ class Hero:
                 self.take_damage(opponent.attack())
             if not self.is_alive() and not opponent.is_alive():
                 print("Draw, Both heroes are knocked out!")
+                self.add_kill(1)
+                opponent.add_death(1)
+                opponent.add_kill(1)
+                self.add_death(1)
             elif self.is_alive() and not opponent.is_alive():
                 print(f"{self.name} won!")
+                self.add_kill(1)
+                opponent.add_death(1)
             else:
                 print(f"{opponent.name} won!")
+                opponent.add_kill(1)
+                self.add_death(1)
 
 if __name__ == "__main__":
     # If you run this file from the terminal
