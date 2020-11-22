@@ -36,7 +36,7 @@ class Hero:
         # We use the append method to add armor objects to our list.
         self.armors.append(armor)
 
-    def defend(self, damage_amt):
+    def defend(self):
         # start our total out at 0
         total_block = 0
         # loop through all of our hero's abilities
@@ -56,8 +56,7 @@ class Hero:
     def take_damage(self, damage):
         # TODO: Create a method that updates self.current_health to the current
         # minus the the amount returned from calling self.defend(damage).
-        defense = self.defend(damage)
-        damage -= defense
+        damage -= self.defend()
         self.current_health -= damage
 
     def is_alive(self):  
