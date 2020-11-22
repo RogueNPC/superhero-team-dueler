@@ -17,10 +17,19 @@ class Hero:
         # and are set to empty lists on initialization
         self.abilities = []
         self.armors = []
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability):
         # We use the append method to add ability objects to our list.
         self.abilities.append(ability)
+
+    def add_weapon(self, weapon):
+        # TODO: This method will append the weapon object passed in as an
+        # argument to self.abilities.
+        # This means that self.abilities will be a list of
+        # abilities and weapons.
+        self.abilities.append(weapon)
 
     def attack(self):
         # start our total out at 0
@@ -46,13 +55,6 @@ class Hero:
         # return the total damage
         return total_block
 
-    def add_weapon(self, weapon):
-        # TODO: This method will append the weapon object passed in as an
-        # argument to self.abilities.
-        # This means that self.abilities will be a list of
-        # abilities and weapons.
-        self.abilities.append(weapon)
-
     def take_damage(self, damage):
         # TODO: Create a method that updates self.current_health to the current
         # minus the the amount returned from calling self.defend(damage).
@@ -67,6 +69,12 @@ class Hero:
             return False
         else:
             return True
+
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    def add_death(self, num_deaths):
+        self.deaths += num_deaths
 
     def fight(self, opponent):
         # TODO: Fight each hero until a victor emerges.
@@ -88,7 +96,6 @@ class Hero:
                 print(f"{self.name} won!")
             else:
                 print(f"{opponent.name} won!")
-
 
 if __name__ == "__main__":
     # If you run this file from the terminal
