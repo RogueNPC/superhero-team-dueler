@@ -40,6 +40,8 @@ class Team:
         # set the hero's current_health to their starting_health
         for hero in self.heroes:
             hero.current_health = hero.starting_health
+            hero.kills = 0
+            hero.deaths = 0
     
     def attack(self, other_team):
         ''' Battle each team against each other.'''
