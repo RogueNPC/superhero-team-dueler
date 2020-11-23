@@ -8,7 +8,7 @@ class Armor:
 
     def block(self):
         # Pick a random value between 0 and self.max_block
-        random_value = random.randint(0,self.max_block)
+        random_value = random.randint(0,int(self.max_block))
         return random_value
 
 

@@ -82,7 +82,7 @@ class Hero:
         # 2) then number of kills the opponent has when the hero (self) dies
         # 3) the number of deaths of the opponent if they die    in the fight
         # 4) the number of deaths of the hero (self) if they die in the fight
-        if self.abilities == [] or opponent.abilities == []:
+        if self.abilities == [] and opponent.abilities == []:
             print("Draw, Both heroes have no abilities!")
         else:
             while self.is_alive() and opponent.is_alive():

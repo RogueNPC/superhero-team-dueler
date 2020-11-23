@@ -6,8 +6,8 @@ from team import Team
 
 class Arena:
     def __init__(self):
-        self.team_one = []
-        self.team_two = []
+        self.team_one = Team("Team one")
+        self.team_two = Team("Team two")
 
     def create_ability(self):
         name = input("What is the ability name?  ")
@@ -57,7 +57,7 @@ class Arena:
         numOfTeamMembers = int(input("How many members would you like on Team One?\n"))
         for i in range(numOfTeamMembers):
             hero = self.create_hero()
-            self.team_one.append(hero)
+            self.team_one.add_hero(hero)
 
     # Now implement build_team_two
     #HINT: If you get stuck, look at how build_team_one is implemented
@@ -70,7 +70,7 @@ class Arena:
         numOfTeamMembers = int(input("How many members would you like on Team Two?\n"))
         for i in range(numOfTeamMembers):
             hero = self.create_hero()
-            self.team_two.append(hero)
+            self.team_two.add_hero(hero)
 
     def team_battle(self):
         '''Battle team_one and team_two together.'''
@@ -91,12 +91,15 @@ class Arena:
         # TODO: for each team, loop through all of their heroes,
         # and use the is_alive() method to check for alive heroes,
         # printing their names and increasing the count if they're alive.
-        for hero in self.team_one:
+        team_one_members_alive = 0
+        team_two_members_alive = 0
+        
+        for hero in self.team_one.heroes:
             if hero.deaths == 0:
                 print("survived from team one: " + hero.name)
                 team_one_members_alive += 1
 
-        for hero in self.team_two:
+        for hero in self.team_two.heroes:
             if hero.deaths == 0:
                 print("survived from team two: " + hero.name)
                 team_two_members_alive += 1
@@ -114,7 +117,7 @@ class Arena:
         # finally, divide the average number of kills by the average number of deaths for each team
         team_kills = 0
         team_deaths = 0
-        for hero in self.team_one:
+        for hero in self.team_one.heroes:
             team_kills += hero.kills
             team_deaths += hero.deaths
         if team_deaths == 0:
@@ -123,7 +126,7 @@ class Arena:
 
         team_kills = 0
         team_deaths = 0
-        for hero in self.team_two:
+        for hero in self.team_two.heroes:
             team_kills += hero.kills
             team_deaths += hero.deaths
         if team_deaths == 0:

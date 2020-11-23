@@ -9,7 +9,7 @@ class Ability:
 
     def attack(self):
         # Pick a random value between 0 and self.max_damage
-        random_value = random.randint(0,self.max_damage)
+        random_value = random.randint(0, int(self.max_damage))
         return random_value
 
 
